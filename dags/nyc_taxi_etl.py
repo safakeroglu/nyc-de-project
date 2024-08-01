@@ -1,10 +1,12 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
+import os
 import sys
-sys.path.append('/Users/Safak/Repos/nyc-de-project/scripts')
+sys.path.append('/opt/airflow/scripts')
 from ingest_data import download_parquet, upload_to_gcs
 from transform_data import clean_and_transform_data, upload_to_bigquery
+from google.oauth2 import service_account
 
 default_args = {
     'owner': 'airflow',
@@ -15,6 +17,10 @@ default_args = {
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
 }
+
+
+def get_credentials():
+    return service_account.Credentials.from_service_account_file(os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'))
 
 dag = DAG(
     'nyc_taxi_etl',
@@ -32,7 +38,12 @@ t1 = PythonOperator(
 t2 = PythonOperator(
     task_id='upload_to_gcs',
     python_callable=upload_to_gcs,
-    op_kwargs={'bucket_name': 'your-bucket-name', 'source_file_name': 'data/yellow_tripdata_2023-01.parquet', 'destination_blob_name': 'raw/yellow_tripdata_2023-01.parquet'},
+    op_kwargs={
+        'credentials': get_credentials(),
+        'bucket_name': os.environ.get('GCP_BUCKET_ID'),
+        'source_file_name': 'data/yellow_tripdata_2023-01.parquet',
+        'destination_blob_name': 'raw/yellow_tripdata_2023-01.parquet'
+    },
     dag=dag,
 )
 

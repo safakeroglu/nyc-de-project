@@ -1,0 +1,31 @@
+[2024-08-01T14:32:26.950+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T14:32:26.961+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: nyc_taxi_etl.download_parquet scheduled__2023-01-04T00:00:00+00:00 [queued]>
+[2024-08-01T14:32:26.969+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: nyc_taxi_etl.download_parquet scheduled__2023-01-04T00:00:00+00:00 [queued]>
+[2024-08-01T14:32:26.969+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2024-08-01T14:32:26.991+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): download_parquet> on 2023-01-04 00:00:00+00:00
+[2024-08-01T14:32:27.009+0000] {standard_task_runner.py:57} INFO - Started process 304 to run task
+[2024-08-01T14:32:27.014+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'nyc_taxi_etl', 'download_parquet', 'scheduled__2023-01-04T00:00:00+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/nyc_taxi_etl.py', '--cfg-path', '/tmp/tmpialxkeju']
+[2024-08-01T14:32:27.016+0000] {standard_task_runner.py:85} INFO - Job 9: Subtask download_parquet
+[2024-08-01T14:32:27.034+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T14:32:27.089+0000] {task_command.py:410} INFO - Running <TaskInstance: nyc_taxi_etl.download_parquet scheduled__2023-01-04T00:00:00+00:00 [running]> on host 31f8257a797f
+[2024-08-01T14:32:27.106+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T14:32:27.469+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='nyc_taxi_etl' AIRFLOW_CTX_TASK_ID='download_parquet' AIRFLOW_CTX_EXECUTION_DATE='2023-01-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-04T00:00:00+00:00'
+[2024-08-01T14:32:38.000+0000] {python.py:183} INFO - Done. Returned value was: None
+[2024-08-01T14:32:38.054+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=nyc_taxi_etl, task_id=download_parquet, execution_date=20230104T000000, start_date=20240801T143226, end_date=20240801T143238
+[2024-08-01T14:32:38.220+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2024-08-01T14:32:38.731+0000] {taskinstance.py:2651} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-08-01T14:42:16.833+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T14:42:16.858+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: nyc_taxi_etl.download_parquet scheduled__2023-01-04T00:00:00+00:00 [queued]>
+[2024-08-01T14:42:16.876+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: nyc_taxi_etl.download_parquet scheduled__2023-01-04T00:00:00+00:00 [queued]>
+[2024-08-01T14:42:16.877+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2024-08-01T14:42:16.903+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): download_parquet> on 2023-01-04 00:00:00+00:00
+[2024-08-01T14:42:16.919+0000] {standard_task_runner.py:57} INFO - Started process 913 to run task
+[2024-08-01T14:42:16.929+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'nyc_taxi_etl', 'download_parquet', 'scheduled__2023-01-04T00:00:00+00:00', '--job-id', '22', '--raw', '--subdir', 'DAGS_FOLDER/nyc_taxi_etl.py', '--cfg-path', '/tmp/tmpizew2toj']
+[2024-08-01T14:42:16.932+0000] {standard_task_runner.py:85} INFO - Job 22: Subtask download_parquet
+[2024-08-01T14:42:16.966+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T14:42:17.025+0000] {task_command.py:410} INFO - Running <TaskInstance: nyc_taxi_etl.download_parquet scheduled__2023-01-04T00:00:00+00:00 [running]> on host 31f8257a797f
+[2024-08-01T14:42:17.045+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T14:42:17.474+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='nyc_taxi_etl' AIRFLOW_CTX_TASK_ID='download_parquet' AIRFLOW_CTX_EXECUTION_DATE='2023-01-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-04T00:00:00+00:00'
+[2024-08-01T14:42:31.156+0000] {python.py:183} INFO - Done. Returned value was: None
+[2024-08-01T14:42:31.299+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=nyc_taxi_etl, task_id=download_parquet, execution_date=20230104T000000, start_date=20240801T144216, end_date=20240801T144231
+[2024-08-01T14:42:31.476+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0

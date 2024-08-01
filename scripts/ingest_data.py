@@ -5,10 +5,10 @@ from google.oauth2 import service_account
 import os
 
 # Constants
-KEY_PATH = "/Users/Safak/Downloads/nyc-de-project00-2929bdfd1a68.json"
-GCP_BUCKET_ID = "nyc-de-project00-bucket"
-PROJECT_ID = "nyc-de-project00"
-BQ_DATASET_ID = "nyc-de-project00.nyc_de_bq00"
+KEY_PATH = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+GCP_BUCKET_ID = os.environ.get('GCP_BUCKET_ID')
+PROJECT_ID = os.environ.get('PROJECT_ID')
+BQ_DATASET_ID = os.environ.get('BQ_DATASET_ID')
 
 def download_parquet():
     url = "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.parquet"
