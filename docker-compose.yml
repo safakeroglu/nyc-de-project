@@ -37,7 +37,7 @@ services:
       - LOAD_EX=n
       - EXECUTOR=Local
       - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
-      - GOOGLE_APPLICATION_CREDENTIALS=/opt/airflow/credentials/nyc-de-project00-2929bdfd1a68.json
+      - GOOGLE_APPLICATION_CREDENTIALS=/opt/airflow/credentials/nyc-de-project00-90f0a92d4ebb.json
       - GCP_BUCKET_ID=nyc-de-project00-bucket
       - PROJECT_ID=nyc-de-project00
       - BQ_DATASET_ID=nyc-de-project00.nyc_de_bq00
@@ -67,7 +67,7 @@ services:
       - LOAD_EX=n
       - EXECUTOR=Local
       - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
-      - GOOGLE_APPLICATION_CREDENTIALS=/opt/airflow/credentials/nyc-de-project00-2929bdfd1a68.json
+      - GOOGLE_APPLICATION_CREDENTIALS=/opt/airflow/credentials/nyc-de-project00-90f0a92d4ebb.json
       - GCP_BUCKET_ID=nyc-de-project00-bucket
       - PROJECT_ID=nyc-de-project00
       - BQ_DATASET_ID=nyc-de-project00.nyc_de_bq00

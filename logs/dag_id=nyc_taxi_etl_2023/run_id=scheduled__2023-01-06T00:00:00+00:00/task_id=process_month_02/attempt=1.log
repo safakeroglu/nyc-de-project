@@ -1,0 +1,45 @@
+[2024-08-01T18:30:54.461+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T18:30:54.472+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: nyc_taxi_etl_2023.process_month_02 scheduled__2023-01-06T00:00:00+00:00 [queued]>
+[2024-08-01T18:30:54.489+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: nyc_taxi_etl_2023.process_month_02 scheduled__2023-01-06T00:00:00+00:00 [queued]>
+[2024-08-01T18:30:54.490+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2024-08-01T18:30:54.503+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): process_month_02> on 2023-01-06 00:00:00+00:00
+[2024-08-01T18:30:54.520+0000] {standard_task_runner.py:57} INFO - Started process 1560 to run task
+[2024-08-01T18:30:54.527+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'nyc_taxi_etl_2023', 'process_month_02', 'scheduled__2023-01-06T00:00:00+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/nyc_taxi_etl.py', '--cfg-path', '/tmp/tmpd0oyhle4']
+[2024-08-01T18:30:54.529+0000] {standard_task_runner.py:85} INFO - Job 30: Subtask process_month_02
+[2024-08-01T18:30:54.562+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T18:30:54.614+0000] {task_command.py:410} INFO - Running <TaskInstance: nyc_taxi_etl_2023.process_month_02 scheduled__2023-01-06T00:00:00+00:00 [running]> on host 6d66194ad4f7
+[2024-08-01T18:30:54.654+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T18:30:56.062+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='nyc_taxi_etl_2023' AIRFLOW_CTX_TASK_ID='process_month_02' AIRFLOW_CTX_EXECUTION_DATE='2023-01-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-06T00:00:00+00:00'
+[2024-08-01T18:31:44.454+0000] {transform_data.py:18} INFO - Processing data for 2023-02
+[2024-08-01T18:31:44.459+0000] {transform_data.py:19} INFO - Columns in the dataset: ['VendorID', 'tpep_pickup_datetime', 'tpep_dropoff_datetime', 'passenger_count', 'trip_distance', 'RatecodeID', 'store_and_fwd_flag', 'PULocationID', 'DOLocationID', 'payment_type', 'fare_amount', 'extra', 'mta_tax', 'tip_amount', 'tolls_amount', 'improvement_surcharge', 'total_amount', 'congestion_surcharge', 'Airport_fee']
+[2024-08-01T18:31:46.314+0000] {transform_data.py:55} ERROR - Error processing data for 2023-02: 'RateCodeID'
+[2024-08-01T18:31:46.322+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/indexes/base.py", line 3361, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 76, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 108, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 5198, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 5206, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'RateCodeID'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/nyc_taxi_etl.py", line 28, in process_month
+    clean_and_transform_data(year, month)
+  File "/opt/airflow/scripts/transform_data.py", line 40, in clean_and_transform_data
+    (df['payment_type'].isin(range(1, 7))) &
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/frame.py", line 3458, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/indexes/base.py", line 3363, in get_loc
+    raise KeyError(key) from err
+KeyError: 'RateCodeID'
+[2024-08-01T18:31:46.371+0000] {taskinstance.py:1350} INFO - Marking task as UP_FOR_RETRY. dag_id=nyc_taxi_etl_2023, task_id=process_month_02, execution_date=20230106T000000, start_date=20240801T183054, end_date=20240801T183146
+[2024-08-01T18:31:46.412+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 30 for task process_month_02 ('RateCodeID'; 1560)
+[2024-08-01T18:31:46.523+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-08-01T18:31:47.114+0000] {taskinstance.py:2651} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -22,4 +22,4 @@ COPY scripts/ ${AIRFLOW_HOME}/scripts/
 COPY credentials/ ${AIRFLOW_HOME}/credentials/
 
 # Set environment variables
-ENV GOOGLE_APPLICATION_CREDENTIALS=${AIRFLOW_HOME}/credentials/nyc-de-project00-2929bdfd1a68.json
+ENV GOOGLE_APPLICATION_CREDENTIALS=${AIRFLOW_HOME}/credentials/nyc-de-project00-90f0a92d4ebb.json

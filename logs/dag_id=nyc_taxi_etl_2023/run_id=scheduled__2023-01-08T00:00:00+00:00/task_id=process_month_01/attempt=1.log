@@ -1,0 +1,99 @@
+[2024-08-01T17:48:11.702+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T17:48:11.712+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: nyc_taxi_etl_2023.process_month_01 scheduled__2023-01-08T00:00:00+00:00 [queued]>
+[2024-08-01T17:48:11.719+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: nyc_taxi_etl_2023.process_month_01 scheduled__2023-01-08T00:00:00+00:00 [queued]>
+[2024-08-01T17:48:11.719+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2024-08-01T17:48:11.729+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): process_month_01> on 2023-01-08 00:00:00+00:00
+[2024-08-01T17:48:11.734+0000] {standard_task_runner.py:57} INFO - Started process 382 to run task
+[2024-08-01T17:48:11.737+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'nyc_taxi_etl_2023', 'process_month_01', 'scheduled__2023-01-08T00:00:00+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/nyc_taxi_etl.py', '--cfg-path', '/tmp/tmpe9uu01ab']
+[2024-08-01T17:48:11.738+0000] {standard_task_runner.py:85} INFO - Job 9: Subtask process_month_01
+[2024-08-01T17:48:11.750+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T17:48:11.783+0000] {task_command.py:410} INFO - Running <TaskInstance: nyc_taxi_etl_2023.process_month_01 scheduled__2023-01-08T00:00:00+00:00 [running]> on host 3a96f4659d34
+[2024-08-01T17:48:11.795+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T17:48:11.979+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='nyc_taxi_etl_2023' AIRFLOW_CTX_TASK_ID='process_month_01' AIRFLOW_CTX_EXECUTION_DATE='2023-01-08T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-08T00:00:00+00:00'
+[2024-08-01T17:48:23.628+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/nyc_taxi_etl.py", line 27, in process_month
+    upload_to_gcs(get_credentials(), os.environ.get('GCP_BUCKET_ID'), f"data/{file_name}", f"raw/{file_name}")
+  File "/opt/airflow/scripts/ingest_data.py", line 28, in upload_to_gcs
+    blob.upload_from_filename(source_file_name)
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/storage/blob.py", line 2697, in upload_from_filename
+    retry=retry,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/storage/blob.py", line 2553, in upload_from_file
+    retry=retry,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/storage/blob.py", line 2384, in _do_upload
+    retry=retry,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/storage/blob.py", line 2211, in _do_resumable_upload
+    retry=retry,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/storage/blob.py", line 2086, in _initiate_resumable_upload
+    timeout=timeout,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/resumable_media/requests/upload.py", line 421, in initiate
+    retriable_request, self._get_status_code, self._retry_strategy
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/resumable_media/requests/_request_helpers.py", line 155, in wait_and_retry
+    response = func()
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/resumable_media/requests/upload.py", line 413, in retriable_request
+    method, url, data=payload, headers=headers, timeout=timeout
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/auth/transport/requests.py", line 545, in request
+    self.credentials.before_request(auth_request, method, url, request_headers)
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/auth/credentials.py", line 135, in before_request
+    self.refresh(request)
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/oauth2/service_account.py", line 426, in refresh
+    request, self._token_uri, assertion
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/oauth2/_client.py", line 304, in jwt_grant
+    request, token_uri, body, can_retry=can_retry
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/oauth2/_client.py", line 274, in _token_endpoint_request
+    _handle_error_response(response_data, retryable_error)
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/oauth2/_client.py", line 74, in _handle_error_response
+    error_details, response_data, retryable=retryable_error
+google.auth.exceptions.RefreshError: ('invalid_grant: Invalid JWT Signature.', {'error': 'invalid_grant', 'error_description': 'Invalid JWT Signature.'})
+[2024-08-01T17:48:23.680+0000] {taskinstance.py:1350} INFO - Marking task as UP_FOR_RETRY. dag_id=nyc_taxi_etl_2023, task_id=process_month_01, execution_date=20230108T000000, start_date=20240801T174811, end_date=20240801T174823
+[2024-08-01T17:48:23.745+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 9 for task process_month_01 (('invalid_grant: Invalid JWT Signature.', {'error': 'invalid_grant', 'error_description': 'Invalid JWT Signature.'}); 382)
+[2024-08-01T17:48:23.819+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-08-01T17:48:24.161+0000] {taskinstance.py:2651} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-08-01T18:31:51.355+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T18:31:51.364+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: nyc_taxi_etl_2023.process_month_01 scheduled__2023-01-08T00:00:00+00:00 [queued]>
+[2024-08-01T18:31:51.372+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: nyc_taxi_etl_2023.process_month_01 scheduled__2023-01-08T00:00:00+00:00 [queued]>
+[2024-08-01T18:31:51.372+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2024-08-01T18:31:51.383+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): process_month_01> on 2023-01-08 00:00:00+00:00
+[2024-08-01T18:31:51.390+0000] {standard_task_runner.py:57} INFO - Started process 1622 to run task
+[2024-08-01T18:31:51.395+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'nyc_taxi_etl_2023', 'process_month_01', 'scheduled__2023-01-08T00:00:00+00:00', '--job-id', '31', '--raw', '--subdir', 'DAGS_FOLDER/nyc_taxi_etl.py', '--cfg-path', '/tmp/tmpil_pdcn3']
+[2024-08-01T18:31:51.397+0000] {standard_task_runner.py:85} INFO - Job 31: Subtask process_month_01
+[2024-08-01T18:31:51.413+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T18:31:51.463+0000] {task_command.py:410} INFO - Running <TaskInstance: nyc_taxi_etl_2023.process_month_01 scheduled__2023-01-08T00:00:00+00:00 [running]> on host 6d66194ad4f7
+[2024-08-01T18:31:51.476+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-08-01T18:31:51.858+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='nyc_taxi_etl_2023' AIRFLOW_CTX_TASK_ID='process_month_01' AIRFLOW_CTX_EXECUTION_DATE='2023-01-08T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-08T00:00:00+00:00'
+[2024-08-01T18:32:40.372+0000] {transform_data.py:18} INFO - Processing data for 2023-01
+[2024-08-01T18:32:40.396+0000] {transform_data.py:19} INFO - Columns in the dataset: ['VendorID', 'tpep_pickup_datetime', 'tpep_dropoff_datetime', 'passenger_count', 'trip_distance', 'RatecodeID', 'store_and_fwd_flag', 'PULocationID', 'DOLocationID', 'payment_type', 'fare_amount', 'extra', 'mta_tax', 'tip_amount', 'tolls_amount', 'improvement_surcharge', 'total_amount', 'congestion_surcharge', 'airport_fee']
+[2024-08-01T18:32:42.591+0000] {transform_data.py:55} ERROR - Error processing data for 2023-01: 'RateCodeID'
+[2024-08-01T18:32:42.596+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/indexes/base.py", line 3361, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 76, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 108, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 5198, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 5206, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'RateCodeID'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/nyc_taxi_etl.py", line 28, in process_month
+  File "/opt/airflow/scripts/transform_data.py", line 40, in clean_and_transform_data
+    (df['payment_type'].isin(range(1, 7))) &
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/frame.py", line 3458, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/indexes/base.py", line 3363, in get_loc
+    raise KeyError(key) from err
+KeyError: 'RateCodeID'
+[2024-08-01T18:32:42.647+0000] {taskinstance.py:1350} INFO - Marking task as UP_FOR_RETRY. dag_id=nyc_taxi_etl_2023, task_id=process_month_01, execution_date=20230108T000000, start_date=20240801T183151, end_date=20240801T183242
+[2024-08-01T18:32:42.679+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 31 for task process_month_01 ('RateCodeID'; 1622)
+[2024-08-01T18:32:42.822+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-08-01T18:32:43.426+0000] {taskinstance.py:2651} INFO - 0 downstream tasks scheduled from follow-on schedule check
