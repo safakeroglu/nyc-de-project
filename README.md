@@ -14,6 +14,19 @@ ETL (Extract, Transform, Load) pipeline for New York City taxi trip data using A
 - Python
 - Pandas
 
+## Data Analysis Dashboard
+
+![NYC Yellow Taxi Trips Overview](dashboardimages/overview.png)
+
+![NYC Yellow Taxi Trips Temporal Analysis](dashboardimages/temporal.png)
+
+![NYC Yellow Taxi Trips Spatial Analysis](dashboardimages/geo.png)
+
+![NYC Yellow Taxi Trips Payment Analysis](dashboardimages/payment.png)
+
+![NYC Yellow Taxi Trips Spatial Analysis](dashboardimages/passenger.png)
+
+
 ## Project Structure
 
 
